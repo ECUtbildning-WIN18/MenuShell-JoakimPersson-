@@ -8,15 +8,15 @@ namespace MenuShell.Domain
 {
     class Customer
     {
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string SocialSecurityNumber { get; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string SocialSecurityNumber { get; set; }
 
-        public Customer(string firstName, string lastName, string socialSecurityNumber)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            SocialSecurityNumber = socialSecurityNumber;
-        }
+        //public Customer(string firstName, string lastName, string socialSecurityNumber)
+        //{
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    SocialSecurityNumber = socialSecurityNumber;
+        //}
     }
 }

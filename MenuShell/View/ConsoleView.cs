@@ -10,6 +10,7 @@ namespace MenuShell.View
     {
         public virtual string Display()
         {
+
             Console.Clear();
 
             return "";

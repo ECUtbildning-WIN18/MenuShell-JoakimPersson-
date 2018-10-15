@@ -10,7 +10,7 @@ namespace MenuShell.Domain
     {
         public string UserName { get; }
         public string Password { get; }
-        public string Role { get; }
+        public string Role { get;}
 
         public User(string userName, string password, string role)
         {

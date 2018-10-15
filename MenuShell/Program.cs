@@ -1,4 +1,5 @@
 ﻿using MenuShell.Domain;
+using MenuShell.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
+            var receptionistView = new ReceptionistMainView();
+            var adminView = new AdminMainView();
+
             Console.Write("Username: ");
             var userName = Console.ReadLine();
 
@@ -24,7 +28,21 @@ namespace MenuShell
             if (user != null)
             {
                 Console.WriteLine("Succesfully logged in");
+
                 Console.WriteLine($"Role {user.Role}");
+                if (user.Role == "Receptionist")
+                {
+                    receptionistView.Display();
+                }
+                if(user.Role == "Admin")
+                {
+                    adminView.Display();
+                }
+                if (user.Role == "Vetrinarian")
+                {
+
+                }
+
             }
             else
             {
