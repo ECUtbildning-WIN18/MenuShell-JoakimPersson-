@@ -12,10 +12,10 @@ namespace MenuShell.Domain
     {
         public List<User> LoadUsers()
         {
-            var registerNewUser = new RegisterNewUser();
             var johnDoe = new User("John", "Secret", "Receptionist");
             var janeDoe = new User("Jane", "Secret", "Vetrinarian");
             var admin = new User("Admin", "Admin", "Admin");
+
             var users = new List<User>();
 
             users.Add(johnDoe);

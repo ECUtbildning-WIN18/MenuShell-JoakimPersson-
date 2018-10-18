@@ -58,6 +58,7 @@
     <Compile Include="View\ReceptionistMainView.cs" />
     <Compile Include="View\RegisterNewUser.cs" />
     <Compile Include="View\SearchCustomerView.cs" />
+    <Compile Include="View\SearchUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

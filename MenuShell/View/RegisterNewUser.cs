@@ -9,6 +9,13 @@ namespace MenuShell.View
 {
     class RegisterNewUser : ConsoleView
     {
+        private readonly IList<User> _users;
+
+        public RegisterNewUser(IList<User> users)
+        {
+            _users = users;
+        }
+
         public override string Display()
         {
             bool notSufficentInformation = true;
@@ -16,9 +23,8 @@ namespace MenuShell.View
             do
             {
                 base.Display();
-                var adminMainView = new AdminMainView();
-                var userLoader = new UserLoader();
-
+                var adminMainView = new AdminMainView(_users);
+                
                 Console.WriteLine("Register user\n");
                 Console.Write("Select username: ");
                 string username = Console.ReadLine();
@@ -35,10 +41,11 @@ namespace MenuShell.View
                 if (consolekeyInfo.Key == ConsoleKey.Y)
                 {
                     var user = new User(username, password, role);
-                    var users = new List<User>();
-                    users.Add(user);
 
-                    adminMainView.Display();
+                    _users.Add(user);
+
+                    Console.Clear();
+                    notSufficentInformation = false;
                 }
                 else
                 {

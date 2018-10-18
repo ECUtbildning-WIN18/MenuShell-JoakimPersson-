@@ -8,19 +8,16 @@ namespace MenuShell.Domain
 {
     class AuthentificationService : IAuthentificationService
     {
-        private readonly IUserLoader _userLoader;
+        private readonly IList<User> _users;
 
-        public AuthentificationService()
+        public AuthentificationService(IList<User> users)
         {
-            _userLoader = new UserLoader();
+            _users = users;
         }
 
         public User Authenticate(string username, string password)
         {
-            List<User> users = _userLoader.LoadUsers();
-
-
-            return users.FirstOrDefault(x => x.UserName == username && x.Password == password);
+            return _users.FirstOrDefault(x => x.UserName == username && x.Password == password);
         }
 
     }
