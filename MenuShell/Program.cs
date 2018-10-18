@@ -4,50 +4,77 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MenuShell
 {
     class Program
     {
+        private readonly IList<User> _users;
+
+        public Program(IList<User> users)
+        {
+            _users = users;
+        }
+
         static void Main(string[] args)
         {
+            var userLoader = new UserLoader();
+
+            var users = userLoader.LoadUsers();
+
             var receptionistView = new ReceptionistMainView();
-            var adminView = new AdminMainView();
 
-            Console.Write("Username: ");
-            var userName = Console.ReadLine();
+            var adminView = new AdminMainView(users);
 
-            Console.Write("Password: ");
-            var password = Console.ReadLine();
-
-            var authenticationService = new AuthentificationService();
-
-            var user = authenticationService.Authenticate(userName, password);
-
-            if (user != null)
+            bool menu = true;
+            while (menu)
             {
-                Console.WriteLine("Succesfully logged in");
+                Console.Write("Username: ");
+                var userName = Console.ReadLine();
 
-                Console.WriteLine($"Role {user.Role}");
-                if (user.Role == "Receptionist")
-                {
-                    receptionistView.Display();
-                }
-                if(user.Role == "Admin")
-                {
-                    adminView.Display();
-                }
-                if (user.Role == "Vetrinarian")
-                {
+                Console.Write("Password: ");
+                var password = Console.ReadLine();
 
-                }
+                Console.WriteLine("\nIs this correct? [Y]es [N]o");
+                var consolekeyInfo = Console.ReadKey();
+                if (consolekeyInfo.Key == ConsoleKey.Y)
+                {
+                    var authenticationService = new AuthentificationService(users);
 
+                    var user = authenticationService.Authenticate(userName, password);
+
+                    if (user != null)
+                    {
+                        Console.WriteLine("\nSuccesfully logged in");
+
+                        Thread.Sleep(2000);
+
+                        Console.WriteLine($"Role {user.Role}");
+                        if (user.Role == "Receptionist")
+                        {
+                            receptionistView.Display();
+                        }
+                        if (user.Role == "Admin")
+                        {
+                            adminView.Display();
+                        }
+                        if (user.Role == "Vetrinarian")
+                        {
+
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nAccess denied!");
+                    }
+                }
             }
-            else
-            {
-                Console.WriteLine("Access denied!");
-            }
+
+
+
         }
     }
 }
