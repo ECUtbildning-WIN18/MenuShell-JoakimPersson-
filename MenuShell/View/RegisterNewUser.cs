@@ -24,7 +24,7 @@ namespace MenuShell.View
             {
                 base.Display();
                 var adminMainView = new AdminMainView(_users);
-                
+
                 Console.WriteLine("Register user\n");
                 Console.Write("Select username: ");
                 string username = Console.ReadLine();
@@ -42,7 +42,7 @@ namespace MenuShell.View
                 {
                     var user = new User(username, password, role);
 
-                    _users.Add(user);
+                    new SqlUserService().CreateUser(user);
 
                     Console.Clear();
                     notSufficentInformation = false;

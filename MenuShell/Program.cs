@@ -20,9 +20,8 @@ namespace MenuShell
 
         static void Main(string[] args)
         {
-            var userLoader = new UserLoader();
-
-            var users = userLoader.LoadUsers();
+            var userLoader = new SqlUserService();
+            var users = userLoader.GetUsers();
 
             var receptionistView = new ReceptionistMainView();
 
@@ -56,7 +55,7 @@ namespace MenuShell
                         {
                             receptionistView.Display();
                         }
-                        if (user.Role == "Admin")
+                        if (user.Role == "Administrator")
                         {
                             adminView.Display();
                         }
@@ -64,17 +63,14 @@ namespace MenuShell
                         {
 
                         }
-
                     }
+
                     else
                     {
                         Console.WriteLine("\nAccess denied!");
                     }
                 }
             }
-
-
-
         }
     }
 }

@@ -8,15 +8,21 @@ namespace MenuShell.Domain
 {
     class User
     {
-        public string UserName { get; }
-        public string Password { get; }
-        public string Role { get;}
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
+        public string FullName => $"{UserName} {Role}";
 
         public User(string userName, string password, string role)
         {
             UserName = userName;
             Password = password;
             Role = role;
+        }
+
+        public User()
+        {
         }
     }
 }

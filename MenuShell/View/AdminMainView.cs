@@ -21,9 +21,7 @@ namespace MenuShell.View
             var manageUser = new ManageUserView(_users);
             var loginView = new LoginView();
             base.Display();
-
-
-
+            
             bool menu = true;
 
             while (menu)
@@ -31,8 +29,7 @@ namespace MenuShell.View
                 Console.WriteLine("1. Manage users");
                 Console.WriteLine("2. Exit");
                 string menuChoise = Console.ReadLine();
-
-
+                
                 if (menuChoise == "1")
                 {
                     manageUser.Display();

@@ -18,6 +18,7 @@ namespace MenuShell.View
 
         public override string Display()
         {
+            var sqlUserService = new SqlUserService();
             var manageUserView = new ManageUserView(_users);
             bool menu = true;
             while (menu)
@@ -26,17 +27,16 @@ namespace MenuShell.View
                 Console.Write("Username: ");
                 string nameSearch = Console.ReadLine();
 
-                var searchResult = _users.Where(x => x.UserName.Contains(nameSearch)).ToList();
-
-
+                var searchResult = sqlUserService.ShowUser(nameSearch);
+                
                 foreach (var user2 in _users)
                 {
                     if (user2.UserName.Contains(nameSearch))
                     {
                         Console.WriteLine(user2.UserName);
                     }
-
                 }
+
                 Console.Clear();
 
                 Console.WriteLine("Search results");
@@ -44,47 +44,8 @@ namespace MenuShell.View
                 {
                     Console.WriteLine(userSearch.UserName);
                 }
-
-                Console.Write("Delete>: ");
-                string userToDelete = Console.ReadLine();
-
-
-
-                var user = searchResult.FirstOrDefault(x => x.UserName == userToDelete);
-
-                Console.WriteLine($"Delete user {user.UserName}? (Y)es (N)o ");
-                var consolekeyInfo = Console.ReadKey();
-
-                if (consolekeyInfo.Key == ConsoleKey.Y)
-                {
-                    _users.Remove(user);
-                    manageUserView.Display();
-                }
-                else
-                {
-                    break;
-                }
-
-
-                //if ()
-                //{
-                //    Console.WriteLine($"Delete user {user.UserName}? (Y)es (N)o ");
-                //    var consolekeyInfo = Console.ReadKey();
-                //    if (consolekeyInfo.Key == ConsoleKey.Y)
-                //    {
-                //        _users.Remove(user);
-                //    }
-                //    else
-                //    {
-                //        break;
-                //    }
-                //}
-
             }
-
             return base.Display();
-
-
         }
     }
 }

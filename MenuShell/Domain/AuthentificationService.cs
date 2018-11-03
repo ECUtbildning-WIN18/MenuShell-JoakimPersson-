@@ -19,6 +19,5 @@ namespace MenuShell.Domain
         {
             return _users.FirstOrDefault(x => x.UserName == username && x.Password == password);
         }
-
     }
 }

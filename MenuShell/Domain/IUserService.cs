@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace MenuShell.Domain
 {
-    interface IUserLoader
+    interface IUserService
     {
-        List<User> LoadUsers();
+        List<User> GetUsers();
+        void CreateUser(User user);
+        void DeleteUser(User user);
     }
 }
